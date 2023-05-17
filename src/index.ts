@@ -1,8 +1,9 @@
 import express, { Express, Request, Response } from "express";
 import dotenv from "dotenv";
 import axios from "axios";
-import { NodeType, parse } from "node-html-parser";
+import { parse } from "node-html-parser";
 import timeout from "connect-timeout";
+import cors from "cors";
 var bodyParser = require('body-parser')
 
 // import fs from "fs";
@@ -11,6 +12,7 @@ dotenv.config();
 const app: Express = express();
 // parse application/json
 app.use(bodyParser.json())
+app.use(cors())
 app.use(timeout(7000));
 
 const port = process.env.PORT;
