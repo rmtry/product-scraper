@@ -4,6 +4,7 @@ import axios from "axios";
 import { parse } from "node-html-parser";
 import timeout from "connect-timeout";
 import cors from "cors";
+import path from "path";
 var bodyParser = require('body-parser')
 
 // import fs from "fs";
@@ -14,11 +15,11 @@ const app: Express = express();
 app.use(bodyParser.json())
 app.use(cors())
 app.use(timeout(7000));
-
+app.use(express.static("client/build"));
 const port = process.env.PORT;
 
-app.get("/", (req: Request, res: Response) => {
-  res.send("Express + TypeScript Server");
+app.get("/app", (req: Request, res: Response) => {
+  res.sendFile(path.join(__dirname, "..", "client", "build", "index.html"));
 });
 
 /*
