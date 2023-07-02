@@ -21,6 +21,9 @@ const port = process.env.PORT;
 app.get("/app", (req: Request, res: Response) => {
   res.sendFile(path.join(__dirname, "..", "client", "build", "index.html"));
 });
+app.get("/", (req: Request, res: Response) => {
+  res.send("Hoang's Product Scraper");
+});
 
 /*
  * expect 
