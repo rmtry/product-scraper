@@ -15,13 +15,13 @@ const app: Express = express();
 app.use(bodyParser.json())
 app.use(cors())
 app.use(timeout(7000));
-app.use(express.static("client/build"));
+app.use('/', express.static(path.join(__dirname, "..", "client", "build")));
 const port = process.env.PORT;
 
-app.get("/app", (req: Request, res: Response) => {
-  res.sendFile(path.join(__dirname, "..", "client", "build", "index.html"));
-});
-app.get("/", (req: Request, res: Response) => {
+// app.get("/app", (req: Request, res: Response) => {
+//   res.sendFile(path.join(__dirname, "..", "client", "build", "index.html"));
+// });
+app.get("/api", (req: Request, res: Response) => {
   res.send("Hoang's Product Scraper");
 });
 
@@ -44,7 +44,7 @@ const parseNumber = (val: string | undefined) => {
   return Number(val.replace('#', ''))
 }
 
-app.post("/scraper", async function (req: Request, res: Response) {
+app.post("/api/scraper", async function (req: Request, res: Response) {
   console.log(req.body);
   //   const foundItem = list.find((item) => item.name === req.params.name);
   //   if (!foundItem)

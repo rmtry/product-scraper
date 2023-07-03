@@ -14,7 +14,7 @@ export default () => {
   const [data, setData]: [any[], any] = useState([])
 
   const getData = async () => {
-    const result = await axios.post('http://localhost:4000/scraper', {
+    const result = await axios.post('http://localhost:4000/api/scraper', {
       url,
       name
     })
